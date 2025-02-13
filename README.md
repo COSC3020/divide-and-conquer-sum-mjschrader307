@@ -12,7 +12,7 @@ of the recursive calls otherwise. For example, the return value for the array `a
 = [1,5,-1,4]` is `9`.
 
 To make it a bit more interesting, instead of splitting into two sub-arrays like
-in merge sort, I want you to split into *three* sub-arrays at each divide step.
+in merge sort, I want you to split into _three_ sub-arrays at each divide step.
 
 Hint: Like in the implementation of merge sort, you may need a helper function
 that does the actual recursion.
@@ -25,3 +25,39 @@ and solve it as we did in the lectures. Give the final $\Theta$ complexity.
 
 Describe your reasoning and the conclusion you've come to. Your reasoning is the
 most important part. Add your answer to this markdown file.
+
+---
+
+Answer:
+
+I would think that partitioning the subarrays into thirds, fourths, fifths, etc. would have the same overall time complexity asymptotically, but in practice, splitting it into more parts would be faster. Although, if you split
+the array into the same number of partitions as there are elements, it would be linear, which would be no better
+than just having a sum counter and iterating through the array. There's probably a happy medium somewhere.
+
+Anyway, the recurrence relation would look like:
+
+$$
+T(n) = \begin{cases}
+      1 & \text{if } n <= 1 \\
+      3T(n/3) + n & \text{if } x > 1 \\
+   \end{cases}
+$$
+
+$$
+T(n) = 3T(\frac{n}{3})+n = 3(3T(\frac{n}{9})+\frac{n}{3})+n = ... = 3^k T(\frac{n}{3^k}) + kn
+$$
+
+Let k = log<sub>3</sub>(n)
+
+$$
+3^{log_3(n)}T(\frac{n}{3^{log_3(n)}}) + nlog_3(n) = nT(1) + nlog_3(n) = n + nlog_3(n)
+$$
+
+$$
+n + nlog_3(n) \in \theta (n log n)
+$$
+
+I certify that I have listed all sources used to complete this exercise, including the use
+of any Large Language Models. All of the work is my own, except where stated
+otherwise. I am aware that plagiarism carries severe penalties and that if plagiarism is
+suspected, charges may be filed against me without prior notice.
