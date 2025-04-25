@@ -39,25 +39,19 @@ Anyway, the recurrence relation would look like:
 $$
 T(n) = \begin{cases}
       1 & \text{if } n <= 1 \\
-      3T(n/3) + n & \text{if } x > 1 \\
+      3T(\frac{n}{3}) + 2 & \text{if } x > 1 \\
    \end{cases}
 $$
 
-$$
-T(n) = 3T(\frac{n}{3})+n = 3(3T(\frac{n}{9})+\frac{n}{3})+n = ... = 3^k T(\frac{n}{3^k}) + kn
-$$
+$3T(\frac{n}{3}) + 2 = 3[3T(\frac{n}{9} + 2] + 2 = 9T(\frac{n}{9}) + 4 = ... = 3^kT(3^{-k}n) + 2^k$
 
-Let k = log<sub>3</sub>(n)
+Let $k = \log_3(n)$:
 
-$$
-3^{log_3(n)}T(\frac{n}{3^{log_3(n)}}) + nlog_3(n) = nT(1) + nlog_3(n) = n + nlog_3(n)
-$$
+$3^{\log_3(n)}T(3^{-\log_3(n)}n) + 2^{\log_3(n)} = nT(1) + 2^{\log_3(n)} = n + 2^{\log_3(n)}$
 
-$$
-n + nlog_3(n) \in \theta (n log n)
-$$
+The second term, $2^{\log_3(n)}$, is neglible asymtotically, so the final runtime complexity is $\Theta(n)$.
 
-I certify that I have listed all sources used to complete this exercise, including the use
-of any Large Language Models. All of the work is my own, except where stated
-otherwise. I am aware that plagiarism carries severe penalties and that if plagiarism is
-suspected, charges may be filed against me without prior notice.
+---
+
+**I certify that I have listed all sources used to complete this exercise, including the use of any Large Language Models. All of the work is my own, except where stated
+otherwise. I am aware that plagiarism carries severe penalties and that if plagiarism is suspected, charges may be filed against me without prior notice.**
